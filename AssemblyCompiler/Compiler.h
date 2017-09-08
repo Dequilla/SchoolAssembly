@@ -7,6 +7,8 @@
 
 #include "Utility.h"
 
+#define RIGHT_BITS 8
+
 inline std::string readFile(std::string path)
 {
 	std::ifstream file(path);
@@ -69,60 +71,60 @@ inline std::string translate(std::string assembly)
 			{
 				outfirst = "0000";
 				second = removeBrackets(second);
-				outsecond = intToBinary<12>(std::stoi(second));
+				outsecond = intToBinary<RIGHT_BITS>(std::stoi(second));
 			}
 			else if (first == "STORE")
 			{
 				outfirst = "0001";
 				second = removeBrackets(second);
-				outsecond = intToBinary<12>(std::stoi(second));
+				outsecond = intToBinary<RIGHT_BITS>(std::stoi(second));
 			}
 			else if (first == "ADD")
 			{ 
 				outfirst = "0010";
 				second = removeBrackets(second);
-				outsecond = intToBinary<12>(std::stoi(second));
+				outsecond = intToBinary<RIGHT_BITS>(std::stoi(second));
 			}
 			else if (first == "SUB")
 			{
 				outfirst = "0011";
 				second = removeBrackets(second);
-				outsecond = intToBinary<12>(std::stoi(second));
+				outsecond = intToBinary<RIGHT_BITS>(std::stoi(second));
 			}
 			else if (first == "JUMP")
 			{
 				outfirst = "0100";
-				outsecond = intToBinary<12>(std::stoi(second));
+				outsecond = intToBinary<RIGHT_BITS>(std::stoi(second));
 			}
 			else if (first == "PJUMP")
 			{
 				outfirst = "0101";
-				outsecond = intToBinary<12>(std::stoi(second));
+				outsecond = intToBinary<RIGHT_BITS>(std::stoi(second));
 			}
 			else if (first == "IN")
 			{
 				outfirst = "0110";
-				outsecond = "000000000000";
+				outsecond = intToBinary<RIGHT_BITS>(0);
 			}
 			else if (first == "OUT")
 			{
 				outfirst = "0111";
-				outsecond = "000000000000";
+				outsecond = intToBinary<RIGHT_BITS>(0);
 			}
 			else if (first == "CALL")
 			{
 				outfirst = "1000";
-				outsecond = intToBinary<12>(std::stoi(second));
+				outsecond = intToBinary<RIGHT_BITS>(std::stoi(second));
 			}
 			else if (first == "RETURN")
 			{
 				outfirst = "1001";
-				outsecond = "000000000000";
+				outsecond = intToBinary<RIGHT_BITS>(0);
 			}
 			else if (isInteger(first))
 			{
 				outfirst = "0000";
-				outsecond = intToBinary<12>(std::stoi(first));
+				outsecond = intToBinary<RIGHT_BITS>(std::stoi(first));
 			}
 			output.append(outfirst + " " + outsecond + "\n");
 		}
